@@ -1,0 +1,105 @@
+.home {
+    font-size: 24px;
+    width: 80%;
+    font-family: sans-serif;
+}
+
+.menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    row-gap: 60px;
+}
+
+.pizza {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pizza__photo {
+    width: 70%;
+    height: 70%;
+}
+
+.pizza__quantity-block {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.pizza__quantity {
+    text-align: center;
+    font-weight: 700;
+    border: none;
+    outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+
+.pizza__radios-container {
+    position: relative;
+    width: 70%;
+    height: 10%;
+    background: rgb(218, 215, 215);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pizza__radios, .pizza__custom-radios {
+    position: absolute;
+    width: 95%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pizza__radios {
+    z-index: 5;
+    border: none;
+}
+
+.pizza__custom-radios {
+    z-index: 4;
+}
+
+.pizza__radio {
+    width: 33%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.pizza__custom-radio {
+    width: 33%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgb(170, 167, 167);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.pizza__order-button {
+    width: 30%;
+    height: 10%;
+    background: #000;
+    font-weight: 700;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+
