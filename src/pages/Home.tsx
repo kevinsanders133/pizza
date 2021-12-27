@@ -12,46 +12,55 @@ const Home: React.FunctionComponent<IPage> = ({ name }) => {
                     name="Pepperoni" 
                     photo="shrimp.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="shrimp.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="burger.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="cheese.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="cheese.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="cheese.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="cheese.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="burger.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
                 <PizzaBlock 
                     name="Pepperoni" 
                     photo="burger.svg" 
                     defaultPrice="35"
+                    pizzaId={1}
                 />
             </div>
         </div>

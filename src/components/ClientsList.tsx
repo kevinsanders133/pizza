@@ -16,4 +16,4 @@ class ClientsList extends React.Component {
     }
 }
 
-export default ClientsList
+export default ClientsList;
