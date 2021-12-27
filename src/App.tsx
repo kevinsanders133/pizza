@@ -1,17 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './styles/App.css';
 import Navigation from './components/Navigation';
-import routes from './config/routes';
-
-const HomeProps         = routes[0];
-const CartProps         = routes[1];
-const HelloProps        = routes[2];
-const ClientsListProps  = routes[3];
-const AboutUsProps      = routes[4];
-const WorkingHoursProps = routes[5];
-const ClickerProps      = routes[6];
-const FormProps         = routes[7];
+import Cart from './pages/Cart';
+import Home from './pages/Home';
+import Hello from './components/Hello';
+import ClientsList from './components/ClientsList';
+import AboutUs from './pages/AboutUs';
+import WorkingHours from './pages/WorkingHours';
+import Clicker from './pages/Clicker';
+import Form from './pages/Form';
+import './styles/App.css';
 
 const App = () => {
   return (
@@ -21,14 +19,14 @@ const App = () => {
       </header>
       <main className="main">
           <Routes>
-            <Route path={HomeProps.path} element={<HomeProps.element />} />
-            <Route path={CartProps.path} element={<CartProps.element />} />
-            <Route path={HelloProps.path} element={<HelloProps.element />} />
-            <Route path={ClientsListProps.path} element={<ClientsListProps.element />} />
-            <Route path={AboutUsProps.path} element={<AboutUsProps.element />} />
-            <Route path={WorkingHoursProps.path} element={<WorkingHoursProps.element />} />
-            <Route path={ClickerProps.path} element={<ClickerProps.element />} />
-            <Route path={FormProps.path} element={<FormProps.element />} />
+            <Route path="/home" element={<Home name="Home" />} />
+            <Route path="/cart" element={<Cart name="Cart" />} />
+            <Route path="/hello" element={<Hello />} />
+            <Route path="/clients-list" element={<ClientsList />} />
+            <Route path="/about" element={<AboutUs name="AboutUs" />} />
+            <Route path="/working-hours" element={<WorkingHours />} />
+            <Route path="/clicker" element={<Clicker />} />
+            <Route path="/form" element={<Form />} />
           </Routes>
       </main>
       <footer className="footer">

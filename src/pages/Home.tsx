@@ -6,7 +6,6 @@ import '../styles/home.css';
 const Home: React.FunctionComponent<IPage> = ({ name }) => {
     return (
         <div className="home">
-            <h1>{name}</h1>
             <div className="menu">
                 <PizzaBlock 
                     name="Pepperoni" 
