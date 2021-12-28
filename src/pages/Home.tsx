@@ -4,7 +4,11 @@ import Popup from '../components/Popup';
 import IPage from '../interfaces/page';
 import '../styles/home.css';
 
-const Home: React.FunctionComponent<IPage> = ({ name }) => {
+interface IHome {
+    updateCart: () => void;
+}
+
+const Home: React.FunctionComponent<IHome> = (props) => {
 
     const [pizzaId, setPizzaId] = useState(1);
     const [photo, setPhoto] = useState("shrimp.svg");
@@ -17,6 +21,7 @@ const Home: React.FunctionComponent<IPage> = ({ name }) => {
     }
     const closePopup = () => {
         setIsVisible(false);
+        props.updateCart();
     }
 
     return (

@@ -10,9 +10,6 @@ const Navigation = () => {
                     <Link to="/home">Home</Link>
                 </li>
                 <li className="navigation__item">
-                    <Link to="/cart">Cart</Link>
-                </li>
-                <li className="navigation__item">
                     <Link to="/hello">Hello page</Link>
                 </li>
                 <li className="navigation__item">

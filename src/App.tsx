@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Navigation from './components/Navigation';
 import Cart from './pages/Cart';
@@ -13,8 +13,17 @@ import './styles/App.css';
 
 const App = () => {
 
+  const [price, setPrice] = useState(0);
+
   const imagesFolder: __WebpackModuleApi.RequireContext = require.context('./public/svg', true);
   const cartImage: string = imagesFolder('./cart.svg').default;
+
+  const updateCart = () => {
+    setPrice((prev) => {
+      return prev + 1;
+    }); 
+
+  }
 
   return (
     <BrowserRouter>
@@ -24,7 +33,7 @@ const App = () => {
           <div className="header__cart">
             <div className="header__cart-container">
               <div className="header__cart-price">
-                100$
+                {price}00$
               </div>
               <div className="header__cart-divider"></div>
               <div className="header__cart-quantity-container">
@@ -37,7 +46,7 @@ const App = () => {
       </header>
       <main className="main">
           <Routes>
-            <Route path="/home" element={<Home name="Home" />} />
+            <Route path="/home" element={<Home updateCart={updateCart} />} />
             <Route path="/cart" element={<Cart name="Cart" />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/clients-list" element={<ClientsList />} />
