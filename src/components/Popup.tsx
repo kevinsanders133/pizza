@@ -9,6 +9,7 @@ interface IData {
     extrasIds: Array<string>;
     defaultPrice: string;
     finalPrice: string;
+    extrasPrice: string;
 }
 interface IPopup {
     pizzaId: number;
@@ -68,6 +69,7 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
             extrasIds, 
             defaultPrice: defaultPriceString,
             finalPrice: finalPriceString,
+            extrasPrice: String(extraPrice),
         };
 
         console.log(data);
