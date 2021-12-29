@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import IPage from '../interfaces/page';
+import CartItem from '../components/CartItem';
 import axios from 'axios';
 import '../styles/cart.css';
 
-const Cart: React.FunctionComponent<IPage> = (props) => {
+interface ICart {
+
+}
+
+const Cart: React.FunctionComponent<ICart> = (props) => {
 
     const [data, setData] = useState({});
 
@@ -32,24 +36,17 @@ const Cart: React.FunctionComponent<IPage> = (props) => {
                 <button className="cart__clear-button">Clear cart</button>
             </div>
             <div className="cart__list">
-                <div className="cart__item">
-                    <div className="cart__item-left-side">
-                        <img src={pizzaImage} alt="" className="cart__item-image" />
-                        <div className="cart__item-info">
-                            <h3 className="cart__item-title">Pepperoni</h3>
-                            <span className="cart__item-size">40cm</span>
-                        </div>
-                    </div>
-                    <div className="cart__item-right-side">
-                        
-                    </div>
-                </div>
+                <CartItem pizzaImage={pizzaImage} />
+                <CartItem pizzaImage={pizzaImage} />
+                <CartItem pizzaImage={pizzaImage} />
             </div>
             <div className="cart__summary">
-
+                <div className="cart__summary-quantity">Total pizza's quntity: <b>3</b></div>
+                <div className="cart__summary-price">Total price: <b>143$</b></div>
             </div>
             <div className="cart__buttons">
-
+                <button className="cart__back">Back</button>
+                <button className="cart__submit">Order</button>
             </div>
         </div>
     );

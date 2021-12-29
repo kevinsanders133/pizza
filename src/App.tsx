@@ -11,19 +11,43 @@ import Clicker from './pages/Clicker';
 import Form from './pages/Form';
 import './styles/App.css';
 
+interface IData {
+  id: string;
+  quantity: string;
+  size: string;
+  extrasIds: Array<string>;
+  defaultPrice: string;
+  finalPrice: string;
+}
+
 const App = () => {
 
   const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(0);
 
   const imagesFolder: __WebpackModuleApi.RequireContext = require.context('./public/svg', true);
   const cartImage: string = imagesFolder('./cart.svg').default;
 
   const updateCart = () => {
-    setPrice((prev) => {
-      return prev + 1;
-    }); 
+    const cartString: string | null = localStorage.getItem('cart') ?? null;
+    if (cartString) {
+      const arr: Array<IData> = JSON.parse(cartString);
+      setQuantity(arr.length);
 
+      let price = 0;
+      arr.forEach((e: IData) => {
+        price += Number(e.finalPrice);
+      });
+      setPrice(price);
+    } else {
+      setPrice(0);
+      setQuantity(0);
+    }
   }
+
+  useEffect(() => {
+    updateCart();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -33,12 +57,12 @@ const App = () => {
           <div className="header__cart">
             <div className="header__cart-container">
               <div className="header__cart-price">
-                {price}00$
+                {price}$
               </div>
               <div className="header__cart-divider"></div>
               <div className="header__cart-quantity-container">
                 <img src={cartImage} alt="" className="header__cart-image" />
-                <div className="header__cart-quantity">4</div>
+                <div className="header__cart-quantity">{quantity}</div>
               </div>
             </div>
           </div>
@@ -47,7 +71,7 @@ const App = () => {
       <main className="main">
           <Routes>
             <Route path="/home" element={<Home updateCart={updateCart} />} />
-            <Route path="/cart" element={<Cart name="Cart" />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/clients-list" element={<ClientsList />} />
             <Route path="/about" element={<AboutUs name="AboutUs" />} />
