@@ -186,6 +186,15 @@
 
 .cart__back {
     background-color: transparent;
-    color: rgb(168, 168, 168);
     border: 2px rgb(168, 168, 168) solid;
+}
+
+.cart__back a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(168, 168, 168);
 }

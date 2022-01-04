@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEventHandler } from 'react';
 import axios from 'axios';
 
 interface IData {
@@ -11,42 +11,42 @@ interface IData {
     extrasPrice: string;
 }
 interface ICartItem {
+    id: number;
     pizzaImage: string;
     quantity: string;
     size: string;
     defaultPrice: string;
     extrasPrice: string;
+    onChangeHandler: (id: number, quantity: string, price: string) => void;
 }
 
 const CartItem: React.FunctionComponent<ICartItem> = (props) => {
 
-    const [price, setPrice] = useState(props.extrasPrice);
     const [quantity, setQuantity] = useState(props.quantity);
+    const [price, setPrice] = useState(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
+
+    useEffect(() => {
+        props.onChangeHandler(props.id, quantity, price);
+    }, [price]);
 
     const decrement = (e: React.MouseEvent) => {
-
-        e.preventDefault();
         const target = e.target as HTMLButtonElement;
-
-        if (target.nextElementSibling) {
-            const input = target.nextElementSibling as HTMLInputElement;
-            input.stepDown();
-            setQuantity(input.value);
-            setPrice(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
-        }
+        const input = target.nextElementSibling as HTMLInputElement;
+        input.stepDown();
+        console.log("Input value: " + input.value);
+        setQuantity(input.value);
     }
 
     const increment = (e: React.MouseEvent) => {
-        e.preventDefault();
         const target = e.target as HTMLButtonElement;
-
-        if (target.previousElementSibling) {
-            const input = target.previousElementSibling as HTMLInputElement;
-            input.stepUp();
-            setQuantity(input.value);
-            setPrice(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
-        }
+        const input = target.previousElementSibling as HTMLInputElement;
+        input.stepUp();
+        setQuantity(input.value);
     }
+    
+    useEffect(() => {
+        setPrice(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
+    }, [quantity]);
 
     return (
         <div className="cart__item">
@@ -60,7 +60,7 @@ const CartItem: React.FunctionComponent<ICartItem> = (props) => {
             <div className="cart__item-right-side">
                 <div className="cart__item-quantity-container">
                     <button className="cart__item-dec" onClick={decrement}>-</button>
-                    <input type="number" min={1} max={10} defaultValue={quantity} className="cart__item-quantity" />
+                    <input type="number" min="1" max="10" defaultValue={quantity} className="cart__item-quantity" />
                     <button className="cart__item-inc" onClick={increment}>+</button>
                 </div>
                 <div className="cart__item-price">{price}$</div>

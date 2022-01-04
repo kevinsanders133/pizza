@@ -1,7 +1,6 @@
 import React from 'react';
-import IPage from '../interfaces/page';
 
-const AboutUs: React.FunctionComponent<IPage> = () => {
+const AboutUs: React.FunctionComponent = () => {
     return (
         <div>
             <h1>

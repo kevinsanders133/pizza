@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PizzaBlock from '../components/PizzaBlock';
 import Popup from '../components/Popup';
-import IPage from '../interfaces/page';
 import '../styles/home.css';
 
 interface IHome {

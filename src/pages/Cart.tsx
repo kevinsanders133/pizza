@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import CartItem from '../components/CartItem';
+import { Link } from 'react-router-dom';
 import '../styles/cart.css';
 
+interface ICart {
+    updateCart: () => void;
+}
 interface IData {
     id: string;
     quantity: string;
@@ -12,6 +16,7 @@ interface IData {
     extrasPrice: string;
 }
 interface ICartItem {
+    id: string;
     pizzaImage: string;
     quantity: string;
     size: string;
@@ -19,42 +24,71 @@ interface ICartItem {
     extrasPrice: string;
 }
 
-const Cart: React.FunctionComponent = () => {
+const Cart: React.FunctionComponent<ICart> = (props) => {
 
     const [cartString, setCartString] = useState<string | null>(localStorage.getItem('cart') ?? null);
     const [cart, setCart] = useState<Array<IData> | null>(null);
+
     const [cartItems, setCartItems] = useState<React.FunctionComponent<ICartItem>[]>([]);
+
+    const [totalQuantity, setTotalQuantity] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/svg', true);
     const cartImage: string = imagesFolder('./cart-black.svg').default;
     const pizzaImage: string = imagesFolder('./shrimp.svg').default;
 
     useEffect(() => {
-        updateCart();
+        let cartArr: IData[] | null = null;
+        if (cartString) cartArr = JSON.parse(cartString) as Array<IData>;
+        setCart(cartArr);
     }, []);
 
+    useEffect(() => {
+        console.log(cart);
+        updateCart();
+    }, [cart]);
+
     const updateCart = () => {
-        if (cartString) {
-            const cartArr = JSON.parse(cartString) as Array<IData>;
-            const temp: React.FunctionComponent<ICartItem>[] = [];
-
-            setCart(cartArr);
-
-            cartArr.forEach((e: IData) => {
+        const temp: React.FunctionComponent<ICartItem>[] = [];
+        let counter = 0;
+        setTotalQuantity(0);
+        setTotalPrice(0);
+        if (cart) {
+            cart.forEach((e: IData) => {
                 temp.push(
                     <CartItem 
                         key={e.id}
+                        id={counter}
                         pizzaImage={pizzaImage}
                         quantity={e.quantity}
                         size={e.size}
                         defaultPrice={e.defaultPrice}
                         extrasPrice={e.extrasPrice}
+                        onChangeHandler={changeSummary}
                     /> as unknown as React.FunctionComponent<ICartItem>
                 );
+                counter += 1;
+                setTotalQuantity((prev) => (prev + Number(e.quantity)));
+                setTotalPrice((prev) => (prev + Number(e.finalPrice)));
             });
-
+    
             setCartItems(temp);
         }
+    }
+
+    useEffect(() => {}, [totalQuantity, totalPrice]);
+
+    const changeSummary = (id: number, quantity: string, price: string) => {
+        const temp: IData[] = JSON.parse(JSON.stringify(cart));
+
+        temp[id]['quantity'] = quantity;
+        temp[id]['finalPrice'] = price;
+
+        localStorage.setItem('cart', JSON.stringify(temp));
+        props.updateCart();
+
+        setCart(() => (temp));
     }
 
     // const getData = async () => {
@@ -81,11 +115,11 @@ const Cart: React.FunctionComponent = () => {
                 {cartItems}
             </div>
             <div className="cart__summary">
-                <div className="cart__summary-quantity">Total pizza's quntity: <b>3</b></div>
-                <div className="cart__summary-price">Total price: <b>143$</b></div>
+                <div className="cart__summary-quantity">Total pizza's quntity: <b>{totalQuantity}</b></div>
+                <div className="cart__summary-price">Total price: <b>{totalPrice}$</b></div>
             </div>
             <div className="cart__buttons">
-                <button className="cart__back">Back</button>
+                <button className="cart__back"><Link to="/home">Back</Link></button>
                 <button className="cart__submit">Order</button>
             </div>
         </div>

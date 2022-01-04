@@ -71,10 +71,10 @@ const App = () => {
       <main className="main">
           <Routes>
             <Route path="/home" element={<Home updateCart={updateCart} />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={<Cart updateCart={updateCart} />} />
             <Route path="/hello" element={<Hello />} />
             <Route path="/clients-list" element={<ClientsList />} />
-            <Route path="/about" element={<AboutUs name="AboutUs" />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/working-hours" element={<WorkingHours />} />
             <Route path="/clicker" element={<Clicker />} />
             <Route path="/form" element={<Form />} />
