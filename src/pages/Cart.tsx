@@ -66,6 +66,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                         defaultPrice={e.defaultPrice}
                         extrasPrice={e.extrasPrice}
                         onChangeHandler={changeSummary}
+                        onDeleteHandler={deleteItem}
                     /> as unknown as React.FunctionComponent<ICartItem>
                 );
                 counter += 1;
@@ -91,6 +92,24 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
         setCart(() => (temp));
     }
 
+    const deleteItem = (id: number) => {
+        const temp: IData[] = JSON.parse(JSON.stringify(cart));
+
+        temp.splice(id, 1);
+
+        localStorage.setItem('cart', JSON.stringify(temp));
+        props.updateCart();
+
+        setCart(() => (temp));
+    }
+
+    const clearCart = () => {
+        localStorage.removeItem('cart');
+        props.updateCart();
+
+        setCart(() => ([]));
+    }
+
     // const getData = async () => {
     //     const res = await axios.get('http://localhost:8081/cart2');
     //     const obj = res.data;
@@ -109,7 +128,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                     <img src={cartImage} alt="" className="cart__title-image" />
                     <div className="cart__title">Cart</div>
                 </div>
-                <button className="cart__clear-button">Clear cart</button>
+                <button className="cart__clear-button" onClick={clearCart}>Clear cart</button>
             </div>
             <div className="cart__list">
                 {cartItems}

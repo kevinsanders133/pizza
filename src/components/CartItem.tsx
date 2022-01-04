@@ -18,6 +18,7 @@ interface ICartItem {
     defaultPrice: string;
     extrasPrice: string;
     onChangeHandler: (id: number, quantity: string, price: string) => void;
+    onDeleteHandler: (id: number) => void;
 }
 
 const CartItem: React.FunctionComponent<ICartItem> = (props) => {
@@ -48,6 +49,10 @@ const CartItem: React.FunctionComponent<ICartItem> = (props) => {
         setPrice(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
     }, [quantity]);
 
+    const deleteItem = () => {
+        props.onDeleteHandler(props.id);
+    }
+
     return (
         <div className="cart__item">
             <div className="cart__item-left-side">
@@ -64,7 +69,7 @@ const CartItem: React.FunctionComponent<ICartItem> = (props) => {
                     <button className="cart__item-inc" onClick={increment}>+</button>
                 </div>
                 <div className="cart__item-price">{price}$</div>
-                <div className="cart__item-delete-button">
+                <div className="cart__item-delete-button" onClick={deleteItem}>
                     <div className="cart__item-cross"></div>
                 </div>
             </div>
