@@ -34,9 +34,10 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
     const [totalQuantity, setTotalQuantity] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
 
-    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/svg', true);
-    const cartImage: string = imagesFolder('./cart-black.svg').default;
-    const pizzaImage: string = imagesFolder('./shrimp.svg').default;
+    const svgFolder: __WebpackModuleApi.RequireContext = require.context('../public/svg', true);
+    const cartImage: string = svgFolder('./cart-black.svg').default;
+    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/pizza', true);
+    const pizzaImage: string = imagesFolder('./1.jpg').default;
 
     useEffect(() => {
         let cartArr: IData[] | null = null;

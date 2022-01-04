@@ -20,7 +20,7 @@ interface IPopup {
 
 const Popup: React.FunctionComponent<IPopup> = (props) => {
 
-    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/svg', true);
+    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/pizza', true);
     const image: string = imagesFolder(`./${props.photo}`).default;
 
     const bg = useRef<null | HTMLDivElement>(null);

@@ -5,8 +5,9 @@ import axios from 'axios';
 interface IPizzaBlock {
     name: string;
     photo: string;
-    defaultPrice: string;
+    defaultPrice: number;
     pizzaId: number;
+    description: string;
     func: (data: any) => void;
 }
 
@@ -18,7 +19,7 @@ interface IData {
 
 const PizzaBlock: React.FunctionComponent<IPizzaBlock> = (props) => {
 
-    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/svg', true);
+    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/pizza', true);
     const image: string = imagesFolder(`./${props.photo}`).default;
 
     const sendIdToHomeComp = () => {
@@ -35,7 +36,7 @@ const PizzaBlock: React.FunctionComponent<IPizzaBlock> = (props) => {
             <div className="pizza__content">
                 <h4 className="pizza__name">{props.name}</h4>
                 <div className="pizza__description">
-                    Ветчина, картофель из печи, моцарелла, соус альфредо
+                    {props.description}
                 </div>
                 <div className="pizza__select-container">
                     <div className="pizza__start-price">from {props.defaultPrice}$</div>

@@ -70,6 +70,7 @@ const App = () => {
       </header>
       <main className="main">
           <Routes>
+          <Route path="/" element={<Home updateCart={updateCart} />} />
             <Route path="/home" element={<Home updateCart={updateCart} />} />
             <Route path="/cart" element={<Cart updateCart={updateCart} />} />
             <Route path="/hello" element={<Hello />} />
