@@ -33,6 +33,11 @@
     padding-left: 10px;
 }
 
+.order-info__tel-error {
+    display: none;
+    color: red;
+}
+
 .order-info__submit {
     background-color: rgb(255, 136, 0);
     color: #fff;
