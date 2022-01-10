@@ -10,8 +10,8 @@ import WorkingHours from './pages/WorkingHours';
 import Clicker from './pages/Clicker';
 import Form from './pages/Form';
 import OrderInfo from './pages/OrderInfo';
-import './styles/App.css';
 import Confirm from './pages/Confirm';
+import './styles/App.css';
 
 interface IData {
   id: string;

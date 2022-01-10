@@ -13,6 +13,9 @@ interface IData {
 }
 interface IPopup {
     pizzaId: number;
+    name: string;
+    defaultPrice: number;
+    description: string;
     photo: string;
     isVisible: boolean;
     func: () => void;
@@ -27,11 +30,15 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
     const submit = useRef<null | HTMLInputElement>(null);
     const form = useRef<null | HTMLFormElement>(null);
 
-    const defaultPrice = 35;
-    const [price, setPrice] = useState(defaultPrice);
+    console.log(props.defaultPrice);
+
+    const name = props.name;
+    const defaultPrice = props.defaultPrice;
+    const description = props.description;
+    const [price, setPrice] = useState(props.defaultPrice);
     const [quantity, setQuantity] = useState(1);
     const [extraPrice, setExtraPrice] = useState(0);
-    const [finalPrice, setFinalPrice] = useState(defaultPrice);
+    const [finalPrice, setFinalPrice] = useState(props.defaultPrice);
 
     useEffect(() => {
         if (bg.current) {
@@ -44,7 +51,11 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
     }, [props.isVisible]);
 
     useEffect(() => {
-        setFinalPrice(price * quantity + extraPrice);
+        setPrice(props.defaultPrice);
+    }, [props.defaultPrice]);
+
+    useEffect(() => {
+        setFinalPrice(Number((price * quantity + extraPrice).toFixed(2)));
     }, [price, quantity, extraPrice]);
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -164,9 +175,9 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
                 <input type="hidden" name="id" value={props.pizzaId} />
                 <img className="popup__photo" src={image} />
                 <div className="popup__content">
-                    <h4 className="popup__name">Pepperoni</h4>
+                    <h4 className="popup__name">{name}</h4>
                     <div className="popup__description">
-                    Italian herbs, tomato sauce, tomatoes, spicy pepperoni, cheese cubes, mozzarella, ham, mushrooms
+                    {description}
                     </div>
                     <div className="popup__quantity-container">
                         <button className="popup__dec" onClick={decrement}>-</button>

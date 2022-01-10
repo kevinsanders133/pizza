@@ -19,6 +19,9 @@ const Home: React.FunctionComponent<IHome> = (props) => {
 
     const [pizzaId, setPizzaId] = useState(1);
     const [photo, setPhoto] = useState("1.jpg");
+    const [name, setName] = useState("");
+    const [defaultPrice, setDefaultPrice] = useState(0);
+    const [description, setDescription] = useState("");
     const [isVisible, setIsVisible] = useState(false);
     const [pizzasList, setPizzasList] = useState<IPizza[] | null>(null);
     const [pizzas, setPizzas] =  useState<React.FunctionComponent<IPizza>[]>([]);
@@ -56,118 +59,40 @@ const Home: React.FunctionComponent<IHome> = (props) => {
     }, [pizzasList]);
 
     const showPopup = (data: any) => {
-        setIsVisible(true);
         setPizzaId(data.pizzaId);
         setPhoto(data.photo);
+        setDefaultPrice(data.defaultPrice);
+        setDescription(data.description);
+        setName(data.name);
+        setIsVisible(true);
     }
     const closePopup = () => {
         setIsVisible(false);
         props.updateCart();
     }
+    useEffect(() => {
+        if (description != '') {
+            
+        }
+    }, [defaultPrice, name, description]);
+
+    useEffect(() => {
+
+    }, [isVisible]);
 
     return (
         <div className="home">
             <Popup 
                 pizzaId={pizzaId}
+                name={name}
                 photo={photo}
                 isVisible={isVisible}
+                defaultPrice={defaultPrice}
+                description={description}
                 func={closePopup}
             />
             <div className="menu">
                 {pizzas}
-                <PizzaBlock 
-                    name="Pepperoni" 
-                    photo="1.jpg" 
-                    defaultPrice={35}
-                    description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                    pizzaId={1}
-                    func={showPopup}
-                />
-                <PizzaBlock 
-                    name="Pepperoni" 
-                    photo="1.jpg" 
-                    defaultPrice={35}
-                    description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                    pizzaId={1}
-                    func={showPopup}
-                /><PizzaBlock 
-                name="Pepperoni" 
-                photo="1.jpg" 
-                defaultPrice={35}
-                description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                pizzaId={1}
-                func={showPopup}
-            /><PizzaBlock 
-            name="Pepperoni" 
-            photo="1.jpg" 
-            defaultPrice={35}
-            description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-            pizzaId={1}
-            func={showPopup}
-        /><PizzaBlock 
-        name="Pepperoni" 
-        photo="1.jpg" 
-        defaultPrice={35}
-        description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-        pizzaId={1}
-        func={showPopup}
-    /><PizzaBlock 
-    name="Pepperoni" 
-    photo="1.jpg" 
-    defaultPrice={35}
-    description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-    pizzaId={1}
-    func={showPopup}
-/><PizzaBlock 
-                    name="Pepperoni" 
-                    photo="1.jpg" 
-                    defaultPrice={35}
-                    description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                    pizzaId={1}
-                    func={showPopup}
-                /><PizzaBlock 
-                name="Pepperoni" 
-                photo="1.jpg" 
-                defaultPrice={35}
-                description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                pizzaId={1}
-                func={showPopup}
-            /><PizzaBlock 
-            name="Pepperoni" 
-            photo="1.jpg" 
-            defaultPrice={35}
-            description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-            pizzaId={1}
-            func={showPopup}
-        /><PizzaBlock 
-        name="Pepperoni" 
-        photo="1.jpg" 
-        defaultPrice={35}
-        description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-        pizzaId={1}
-        func={showPopup}
-    /><PizzaBlock 
-    name="Pepperoni" 
-    photo="1.jpg" 
-    defaultPrice={35}
-    description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-    pizzaId={1}
-    func={showPopup}
-/><PizzaBlock 
-                    name="Pepperoni" 
-                    photo="1.jpg" 
-                    defaultPrice={35}
-                    description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                    pizzaId={1}
-                    func={showPopup}
-                /><PizzaBlock 
-                name="Pepperoni" 
-                photo="1.jpg" 
-                defaultPrice={35}
-                description='Bacon, cheddar and parmesan cheese, mozzarella, tomatoes, alfredo sauce, red onion, garlic, Italian herbs'
-                pizzaId={1}
-                func={showPopup}
-            />
             </div>
         </div>
     );

@@ -1,15 +1,5 @@
-import React, { useState, useEffect, ChangeEventHandler } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-interface IData {
-    id: string;
-    quantity: string;
-    size: string;
-    extrasIds: Array<string>;
-    defaultPrice: string;
-    finalPrice: string;
-    extrasPrice: string;
-}
 interface ICartItem {
     id: number;
     pizzaImage: string;
@@ -24,7 +14,15 @@ interface ICartItem {
 const CartItem: React.FunctionComponent<ICartItem> = (props) => {
 
     const [quantity, setQuantity] = useState(props.quantity);
-    const [price, setPrice] = useState(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
+    let coef: number;
+    if (props.size == '24') {
+        coef = 0.8;
+    } else if (props.size == '32') {
+        coef = 1;
+    } else {
+        coef = 1.2;
+    }
+    const [price, setPrice] = useState(String(Number(props.defaultPrice) * coef * Number(quantity) + Number(props.extrasPrice)));
 
     useEffect(() => {
         props.onChangeHandler(props.id, quantity, price);
@@ -46,7 +44,7 @@ const CartItem: React.FunctionComponent<ICartItem> = (props) => {
     }
     
     useEffect(() => {
-        setPrice(String(Number(props.defaultPrice) * Number(quantity) + Number(props.extrasPrice)));
+        setPrice((Number(props.defaultPrice) * coef * Number(quantity) + Number(props.extrasPrice)).toFixed(2));
     }, [quantity]);
 
     const deleteItem = () => {

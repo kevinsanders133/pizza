@@ -11,12 +11,6 @@ interface IPizzaBlock {
     func: (data: any) => void;
 }
 
-interface IData {
-    id: string;
-    quantity: string;
-    size: string;
-}
-
 const PizzaBlock: React.FunctionComponent<IPizzaBlock> = (props) => {
 
     const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/pizza', true);
@@ -26,6 +20,9 @@ const PizzaBlock: React.FunctionComponent<IPizzaBlock> = (props) => {
         const data = {
             pizzaId: props.pizzaId,
             photo: props.photo,
+            name: props.name,
+            defaultPrice: props.defaultPrice,
+            description: props.description,
         };
         props.func(data);
     }

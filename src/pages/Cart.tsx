@@ -72,7 +72,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                 );
                 counter += 1;
                 setTotalQuantity((prev) => (prev + Number(e.quantity)));
-                setTotalPrice((prev) => (prev + Number(e.finalPrice)));
+                setTotalPrice((prev) => (Number(prev + Number(e.finalPrice).toFixed(2))));
             });
     
             setCartItems(temp);
@@ -110,17 +110,6 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
 
         setCart(() => ([]));
     }
-
-    // const getData = async () => {
-    //     const res = await axios.get('http://localhost:8081/cart2');
-    //     const obj = res.data;
-    //     console.log(obj);
-    //     setData(obj);
-    // };
-
-    // useEffect(() => {
-    //     getData();
-    // }, []);
 
     return (
         <div className="cart">
