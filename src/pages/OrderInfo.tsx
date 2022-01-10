@@ -25,9 +25,10 @@ const OrderInfo: React.FunctionComponent = () => {
     const placeOrder = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = e.target as HTMLFormElement;
-        try {
+        const tel = (form.querySelector('.order-info__tel') as HTMLInputElement).value;
+        const regex = new RegExp(/^\+48[0-9]{9}$/gm);
+        if (regex.test(tel)) {
             const address = (form.querySelector('.order-info__address') as HTMLInputElement).value;
-            const tel = (form.querySelector('.order-info__tel') as HTMLInputElement).value;
             const email = (form.querySelector('.order-info__email') as HTMLInputElement).value;
             const name = (form.querySelector('.order-info__name') as HTMLInputElement).value;
 
@@ -41,21 +42,25 @@ const OrderInfo: React.FunctionComponent = () => {
             });
 
             setInfo({ address, tel, email, name, pizzaSettings, price });
-        } catch(e) {
+        } else {
             const tel = form.querySelector('.order-info__tel') as HTMLInputElement;
             const errorMessage = tel.nextElementSibling as HTMLSpanElement;
-            errorMessage.style.display = 'block';
+            errorMessage.style.opacity = '1';
+            setTimeout(() => {
+                errorMessage.style.opacity = '0';
+            }, 3000);
         }
     }
 
     useEffect(() => {
-        console.log(info);
         sendRequest();
     }, [info]);
     
     const sendRequest = async () => {
         const res = await axios.post('http://localhost:8081/placeOrder', info);
         console.log(res.data);
+        localStorage.removeItem('cart');
+        window.location.href = "/confirm";
     }
 
     return (
@@ -65,8 +70,8 @@ const OrderInfo: React.FunctionComponent = () => {
                     <input type="text" placeholder="Street, house number" className="order-info__address" required />
                 </label>
                 <label className="order-info__label">Phone number:
-                    <input type="tel" placeholder="+48 000 000 000" pattern="+48 [0-9]{3} [0-9]{3} [0-9]{3}" className="order-info__tel" required />
-                    <span className="order-info__tel-error">Incorrect phone number. Pattern: "+48 000 000 000"</span>
+                    <input type="tel" placeholder="+48000000000" minLength={12} maxLength={12} pattern="+48[0-9]{3}[0-9]{3}[0-9]{3}" className="order-info__tel" required />
+                    <span className="order-info__tel-error">Incorrect phone number. Pattern: "+48000000000"</span>
                 </label>
                 <label className="order-info__label">Email:
                     <input type="email" placeholder="example@gmail.com" className="order-info__email" required />

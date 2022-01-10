@@ -11,6 +11,7 @@ import Clicker from './pages/Clicker';
 import Form from './pages/Form';
 import OrderInfo from './pages/OrderInfo';
 import './styles/App.css';
+import Confirm from './pages/Confirm';
 
 interface IData {
   id: string;
@@ -81,6 +82,7 @@ const App = () => {
             <Route path="/clicker" element={<Clicker />} />
             <Route path="/form" element={<Form />} />
             <Route path="/order-info" element={<OrderInfo />} />
+            <Route path="/confirm" element={<Confirm />} />
           </Routes>
       </main>
       <footer className="footer">

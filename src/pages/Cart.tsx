@@ -140,7 +140,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
             </div>
             <div className="cart__buttons">
                 <button className="cart__back"><Link to="/home">Back</Link></button>
-                <button className="cart__submit"><Link to="/order-info">Continue</Link></button>
+                { totalPrice ? <button className="cart__submit"><Link to="/order-info">Continue</Link></button> : <></> }
             </div>
         </div>
     );
