@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ReactElement } from 'react';
 import Extra from './Extra';
 import axios from 'axios';
 
@@ -20,6 +20,12 @@ interface IPopup {
     isVisible: boolean;
     func: () => void;
 }
+interface IExtra {
+    id: number;
+    name: string;
+    price: number;
+    photo: string;
+}
 
 const Popup: React.FunctionComponent<IPopup> = (props) => {
 
@@ -27,10 +33,7 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
     const image: string = imagesFolder(`./${props.photo}`).default;
 
     const bg = useRef<null | HTMLDivElement>(null);
-    const submit = useRef<null | HTMLInputElement>(null);
     const form = useRef<null | HTMLFormElement>(null);
-
-    console.log(props.defaultPrice);
 
     const name = props.name;
     const defaultPrice = props.defaultPrice;
@@ -39,6 +42,39 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
     const [quantity, setQuantity] = useState(1);
     const [extraPrice, setExtraPrice] = useState(0);
     const [finalPrice, setFinalPrice] = useState(props.defaultPrice);
+    const [extrasList, setExtrasList] = useState<IExtra[] | null>(null);
+    const [extras, setExtras] =  useState<ReactElement<any, any>[]>([]);
+
+    useEffect(() => {
+        loadExtras();
+    }, []);
+
+    const loadExtras = async () => {
+        const res = await axios.get('http://localhost:8081/extras');
+        const obj = res.data as IExtra[];
+        console.log(obj);
+        setExtrasList(obj);
+    }
+
+    useEffect(() => {
+        const temp: ReactElement<any, any>[] = [];
+        if (extrasList) {
+            extrasList.forEach((e: IExtra) => {
+                temp.push(
+                    <div className="popup__extras-item" key={e.id}>
+                        <input type="checkbox" defaultValue={e.id} onClick={changeExtras} name="extra" className="popup__extra-checkbox" />
+                        <Extra 
+                        id={e.id}
+                        name={e.name}
+                        price={e.price}
+                        photo={e.photo}
+                        />
+                    </div>
+                );
+            });
+        }
+        setExtras(temp);
+    }, [extrasList]);
 
     useEffect(() => {
         if (bg.current) {
@@ -93,11 +129,6 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
         } else {
             localStorage.setItem('cart', JSON.stringify([data]));
         }
-
-        // console.log(data);
-        // const res = await axios.get('http://localhost:8081/test');
-        // const obj = res.data;
-        // console.log(obj);
         
         closePopUp();
     }
@@ -201,20 +232,7 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
                         </div>
                     </div>
                     <div className="popup__extras-container">
-                        <div className="popup__extras-item">
-                            <input type="checkbox" defaultValue={1} onClick={changeExtras} name="extra" className="popup__extra-checkbox" />
-                            <Extra extraId={1} photo="bacon.png" />
-                        </div>
-
-                        <div className="popup__extras-item">
-                            <input type="checkbox" defaultValue={2} onClick={changeExtras} name="extra" className="popup__extra-checkbox" />
-                            <Extra extraId={2} photo="tomatos.png" />
-                        </div>
-
-                        <div className="popup__extras-item">
-                            <input type="checkbox" defaultValue={3} onClick={changeExtras} name="extra" className="popup__extra-checkbox" />
-                            <Extra extraId={3} photo="jalapeno.png" />
-                        </div>
+                        {extras}
                     </div>
                     <input type="submit" value={`Add to cart for ${finalPrice}$`} className="popup__order-button" />
                 </div>

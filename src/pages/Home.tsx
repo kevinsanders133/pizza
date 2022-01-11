@@ -44,6 +44,7 @@ const Home: React.FunctionComponent<IHome> = (props) => {
             pizzasList.forEach((e: IPizza) => {
                 temp.push(
                     <PizzaBlock 
+                    key={e.id}
                     name={e.name}
                     photo={`${e.id}.jpg`}
                     defaultPrice={e.defaultPrice}
@@ -70,15 +71,9 @@ const Home: React.FunctionComponent<IHome> = (props) => {
         setIsVisible(false);
         props.updateCart();
     }
-    useEffect(() => {
-        if (description != '') {
-            
-        }
-    }, [defaultPrice, name, description]);
+    useEffect(() => {}, [defaultPrice, name, description]);
 
-    useEffect(() => {
-
-    }, [isVisible]);
+    useEffect(() => {}, [isVisible]);
 
     return (
         <div className="home">

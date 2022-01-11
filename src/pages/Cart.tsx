@@ -72,7 +72,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                 );
                 counter += 1;
                 setTotalQuantity((prev) => (prev + Number(e.quantity)));
-                setTotalPrice((prev) => (Number(prev + Number(e.finalPrice).toFixed(2))));
+                setTotalPrice((prev) => (Number(prev + Number(Number(e.finalPrice).toFixed(2)))));
             });
     
             setCartItems(temp);
