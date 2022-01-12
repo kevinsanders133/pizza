@@ -10,7 +10,7 @@ interface IExtra {
 const Extra: React.FunctionComponent<IExtra> = (props) => {
 
     const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/img', true);
-    const image: string = imagesFolder(`./${props.id}.png`).default;
+    const image: string = imagesFolder(`./${props.id}.jpg`).default;
 
     return (
         <div className="popup__extra-container">

@@ -265,7 +265,9 @@ input[type=number]::-webkit-outer-spin-button {
     width: 80%;
     height: 35%;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 1.5%;
+    row-gap: 5px;
     align-items: center;
     overflow-y: scroll;
 }

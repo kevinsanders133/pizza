@@ -40,7 +40,7 @@ const App = () => {
       arr.forEach((e: IData) => {
         price += Number(e.finalPrice);
       });
-      setPrice(price);
+      setPrice(Number(price.toFixed(2)));
     } else {
       setPrice(0);
       setQuantity(0);
