@@ -3,12 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Navigation from './components/Navigation';
 import Cart from './pages/Cart';
 import Home from './pages/Home';
-import Hello from './components/Hello';
-import ClientsList from './components/ClientsList';
 import AboutUs from './pages/AboutUs';
 import WorkingHours from './pages/WorkingHours';
-import Clicker from './pages/Clicker';
-import Form from './pages/Form';
 import OrderInfo from './pages/OrderInfo';
 import Confirm from './pages/Confirm';
 import './styles/App.css';
@@ -75,19 +71,15 @@ const App = () => {
           <Route path="/" element={<Home updateCart={updateCart} />} />
             <Route path="/home" element={<Home updateCart={updateCart} />} />
             <Route path="/cart" element={<Cart updateCart={updateCart} />} />
-            <Route path="/hello" element={<Hello />} />
-            <Route path="/clients-list" element={<ClientsList />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/working-hours" element={<WorkingHours />} />
-            <Route path="/clicker" element={<Clicker />} />
-            <Route path="/form" element={<Form />} />
             <Route path="/order-info" element={<OrderInfo />} />
             <Route path="/confirm" element={<Confirm />} />
           </Routes>
       </main>
-      <footer className="footer">
+      {/* <footer className="footer">
         <Navigation />
-      </footer>
+      </footer> */}
     </BrowserRouter>
   );
 }
