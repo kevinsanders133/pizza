@@ -18,7 +18,7 @@ interface IHome {
 const Home: React.FunctionComponent<IHome> = (props) => {
 
     const [pizzaId, setPizzaId] = useState(1);
-    const [photo, setPhoto] = useState("1.jpg");
+    const [photo, setPhoto] = useState("-1.jpg");
     const [name, setName] = useState("");
     const [defaultPrice, setDefaultPrice] = useState(0);
     const [description, setDescription] = useState("");

@@ -36,8 +36,6 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
 
     const svgFolder: __WebpackModuleApi.RequireContext = require.context('../public/svg', true);
     const cartImage: string = svgFolder('./cart-black.svg').default;
-    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/pizza', true);
-    const pizzaImage: string = imagesFolder('./1.jpg').default;
 
     useEffect(() => {
         let cartArr: IData[] | null = null;
@@ -61,7 +59,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                     <CartItem 
                         key={e.id}
                         id={counter}
-                        pizzaImage={pizzaImage}
+                        pizzaImage={e.id}
                         quantity={e.quantity}
                         size={e.size}
                         defaultPrice={e.defaultPrice}
@@ -72,7 +70,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                 );
                 counter += 1;
                 setTotalQuantity((prev) => (prev + Number(e.quantity)));
-                setTotalPrice((prev) => (Number(prev + Number(Number(e.finalPrice).toFixed(2)))));
+                setTotalPrice((prev) => (Number((prev + Number(e.finalPrice)).toFixed(2))));
             });
     
             setCartItems(temp);

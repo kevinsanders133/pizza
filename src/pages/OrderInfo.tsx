@@ -60,7 +60,7 @@ const OrderInfo: React.FunctionComponent = () => {
         const res = await axios.post('http://localhost:8081/placeOrder', info);
         console.log(res.data);
         localStorage.removeItem('cart');
-        // window.location.href = "/confirm";
+        window.location.href = "/confirm";
     }
 
     return (

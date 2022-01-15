@@ -2,20 +2,6 @@
     width: 70%;
     height: auto;
 }
-/* .cart::-webkit-scrollbar {
-    width: 10px;
-}
-.cart::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 20px;
-}
-.cart::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 20px; 
-}
-.cart::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-} */
 
 .cart__header {
     width: 100%;
@@ -66,7 +52,7 @@
 }
 .cart__item-image {
     width: 30%;
-    height: 90%;
+    height: 95%;
     margin-right: 2%;
 }
 

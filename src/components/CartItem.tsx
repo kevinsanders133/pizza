@@ -13,6 +13,9 @@ interface ICartItem {
 
 const CartItem: React.FunctionComponent<ICartItem> = (props) => {
 
+    const imagesFolder: __WebpackModuleApi.RequireContext = require.context('../public/pizza', true);
+    const pizzaImage: string = imagesFolder(`./${props.pizzaImage}.jpg`).default;
+
     const [quantity, setQuantity] = useState(props.quantity);
     let coef: number;
     if (props.size == '24') {
@@ -54,7 +57,7 @@ const CartItem: React.FunctionComponent<ICartItem> = (props) => {
     return (
         <div className="cart__item">
             <div className="cart__item-left-side">
-                <img src={props.pizzaImage} alt="" className="cart__item-image" />
+                <img src={pizzaImage} alt="" className="cart__item-image" />
                 <div className="cart__item-info">
                     <h3 className="cart__item-title">Pepperoni</h3>
                     <span className="cart__item-size">{props.size}cm</span>
