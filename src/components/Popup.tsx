@@ -6,6 +6,7 @@ interface IData {
     id: string;
     quantity: string;
     size: string;
+    name: string;
     extrasIds: Array<string>;
     defaultPrice: string;
     finalPrice: string;
@@ -113,6 +114,7 @@ const Popup: React.FunctionComponent<IPopup> = (props) => {
             id, 
             quantity, 
             size, 
+            name,
             extrasIds, 
             defaultPrice: defaultPriceString,
             finalPrice: finalPriceString,

@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import '../styles/hours.css';
 
 export const WorkingHours = () => {
     return (
-        <ul>
+        <ul className='hours'>
             <li>Monday  12–10PM</li>
             <li>Tuesday  12–10PM</li>
             <li>Wednesday  12–10PM</li>

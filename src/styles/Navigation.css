@@ -15,3 +15,26 @@
     font-size: 24px;
     text-decoration: none;
 }
+
+.loginIn, .loginOut, .btn {
+    text-decoration: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    border: rgb(255, 136, 0) solid 3px;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.loginIn {
+    border: rgb(255, 136, 0) solid 3px;
+    background-color: #fff;
+}

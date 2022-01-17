@@ -1,16 +1,17 @@
 import React from 'react';
+import '../styles/AboutUs.css';
 
 const AboutUs: React.FunctionComponent = () => {
     return (
-        <div>
+        <div className="about">
             <h1>
-                AVE! PIZZA ZAPRASZA NA WARSZAWSKIE POWIŚLE. NIECH ŻYJE PIZZA!
+            HI! PIZZA SHOP INVITES YOU TO THE WARSAW POWIŚLE. LONG LIVE PIZZA!
             </h1>
             <p>
-                AVE! Pizza to miejsce z tradycyjną pizzą, którą przygotowują nasi włoscy pizzaiolo według tradycyjnej receptury. Na naszej pizzy znajdują się wyłącznie wysokiej jakości produkty włoskie. W odpowiednim do tego sezonie serwujemy specjalne menu - można w nim znaleźć ciekawe propozycję pizz np. ze szparagami lub kurkami.  Ciasto z którego wyrabiamy pizze dojrzewa 72 godziny, a wypiekane jest w specjalnym piecu w temperaturze 450 stopni!  Zapraszamy również na nasze pasty, antipasti, sałatki, desery oraz do naszego Ave Baru, Nasza pizzeria została uznana za jedną z 50 najlepszych w Europie w zestawieniu “Top 50 pizza” na rok 2019 oraz 2020. Ranking ten to zestawienie najlepszych pizzerii na wszystkich kontynentach. Kuratorami zestawienia są Barbara Guerra (twórczyni kongresu Le Strade della Mozzarella), znany sommelier Albert Sapere i Luciano Pignataro, specjalista od gastronomii w serwisie "Il Mattino" oraz twórca poczytnego bloga o jedzeniu i winie.
+            HI! PIZZA SHOP is a place with traditional pizza, prepared by our Italian pizzaiolo according to a traditional recipe. Only high-quality Italian products are used on our pizza. In the season that is appropriate for this season, we serve a special menu - in it you can find interesting pizzas with, for example, asparagus or chanterelles. The dough from which the pizzas are made matures for 72 hours, and is baked in a special oven at 450 degrees! We also invite you to our pastas, antipasti, salads, desserts and to our Ave Bar. Our pizzeria was recognized as one of the top 50 in Europe in the "Top 50 pizza" list for 2019 and 2020. This ranking is a list of the best pizzerias on all continents . The curators of the list are Barbara Guerra (creator of the Le Strade della Mozzarella congress), well-known sommelier Albert Sapere and Luciano Pignataro, gastronomy specialist on the website "Il Mattino" and creator of a widely read blog about food and wine.
             </p>
             <p>
-                Adres: Topiel 12, 00-342 Warszawa
+            <b>Address: Topiel 00, 00-342 Warsaw</b>
             </p>
         </div>
     )

@@ -10,6 +10,7 @@ interface IData {
     id: string;
     quantity: string;
     size: string;
+    name: string;
     extrasIds: Array<string>;
     defaultPrice: string;
     finalPrice: string;
@@ -18,6 +19,7 @@ interface IData {
 interface ICartItem {
     id: string;
     pizzaImage: string;
+    name: string;
     quantity: string;
     size: string;
     defaultPrice: string;
@@ -61,6 +63,7 @@ const Cart: React.FunctionComponent<ICart> = (props) => {
                         id={counter}
                         pizzaImage={e.id}
                         quantity={e.quantity}
+                        name={e.name}
                         size={e.size}
                         defaultPrice={e.defaultPrice}
                         extrasPrice={e.extrasPrice}

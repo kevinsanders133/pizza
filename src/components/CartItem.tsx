@@ -4,6 +4,7 @@ interface ICartItem {
     id: number;
     pizzaImage: string;
     quantity: string;
+    name: string;
     size: string;
     defaultPrice: string;
     extrasPrice: string;
@@ -59,7 +60,7 @@ const CartItem: React.FunctionComponent<ICartItem> = (props) => {
             <div className="cart__item-left-side">
                 <img src={pizzaImage} alt="" className="cart__item-image" />
                 <div className="cart__item-info">
-                    <h3 className="cart__item-title">Pepperoni</h3>
+                    <h3 className="cart__item-title">{props.name}</h3>
                     <span className="cart__item-size">{props.size}cm</span>
                 </div>
             </div>

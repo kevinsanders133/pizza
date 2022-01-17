@@ -50,6 +50,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <header className="header">
+        <div className="logo">PIZZA SHOP</div>
         <Navigation />
         <Link to="/cart">
           <div className="header__cart">
